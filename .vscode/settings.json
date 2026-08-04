@@ -1,1 +1,10 @@
-{}
+{
+    "idf.currentSetup": "C:\\esp\\v6.0.2\\esp-idf",
+    "terminal.integrated.profiles.windows": {
+        "ESP-IDF PowerShell": {
+            "path": "powershell.exe",
+            "args": ["-NoExit", "-Command", "& 'C:\\esp\\v6.0.2\\esp-idf\\export.ps1'"]
+        }
+    },
+    "terminal.integrated.defaultProfile.windows": "ESP-IDF PowerShell"
+}
