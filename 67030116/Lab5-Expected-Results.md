@@ -13,7 +13,7 @@ Lab 5.1 มีผลวัดจริงอยู่ใน `07-Labsheet-05-1-Wi
 | :--- | :--- |
 | 5.2 | `EXAMPLE_ESP_WIFI_SSID`, `EXAMPLE_ESP_WIFI_PASS` |
 | 5.3 | `TARGET_WIFI_SSID`, `TARGET_WIFI_PASS` |
-| 5.4 | `TARGET_WIFI_SSID`, `TARGET_WIFI_PASS` (ค่าเดิมเป็น Hotspot ของอาจารย์) |
+| 5.4 | `TARGET_WIFI_SSID`, `TARGET_WIFI_PASS` (เปลี่ยนจาก Hotspot ของอาจารย์เป็น `MY_SSID` แล้ว) |
 
 ## Lab 5.2: Connection Phase
 
@@ -25,7 +25,7 @@ Lab 5.1 มีผลวัดจริงอยู่ใน `07-Labsheet-05-1-Wi
 
 ค่าใน 5.2.1 ขึ้นกับ AP ที่ใช้: Subnet Mask มักเป็น `255.255.255.0` ส่วน IP, Gateway, BSSID และ Channel ต้องอ่านจาก Log
 
-**ข้อควรระวัง:** ข้อความ Reason ในโค้ดสลับเลขกันอยู่ `WIFI_REASON_4WAY_HANDSHAKE_TIMEOUT` มีค่าจริง 15 แต่โค้ดพิมพ์ว่า (204) ให้ยึดบรรทัด `Reason Code (Decimal)` เป็นหลัก
+**หมายเหตุ:** ข้อความ Reason เดิมในโค้ดสลับเลขกัน จึงแก้ให้ตรงกับ ESP-IDF แล้ว: `4WAY_HANDSHAKE_TIMEOUT` = 15, `HANDSHAKE_TIMEOUT` = 204
 
 ## Lab 5.3: Auth & Assoc Phase
 
