@@ -342,6 +342,18 @@ void app_main(void) {
 ## 7. คำถามท้ายการทดลอง (Post-Lab Questions)
 
 1. **Association ID (AID)** คืออะไร มีบทบาทอย่างไรใน Phase 3 และส่งคืนมาในโครงสร้างข้อมูลตัวแปรใด?
+
+   **คำตอบ:** AID คือหมายเลขที่ AP กำหนดให้ Station ตอนตอบรับ Association ใช้ระบุ Station ใน BSS เช่น บอกใน Beacon ว่ามีข้อมูลรอส่งให้ Station ใด ค่านี้ส่งคืนมาใน `wifi_event_sta_connected_t` สมาชิก `aid`
+
 2. เหตุใดการเชื่อมต่อ Wi-Fi ความปลอดภัยแบบ WPA2-PSK จึงสามารถผ่าน Phase 2 (Authentication) และ Phase 3 (Association) จนเกิด Event `WIFI_EVENT_STA_CONNECTED` ได้สำเร็จ แม้ผู้ใช้จะป้อนรหัสผ่าน (Password) ผิด?
+
+   **คำตอบ:** เพราะ Phase 2 แบบ Open System และ Phase 3 ไม่มีการตรวจรหัสผ่าน การพิสูจน์รหัสผ่านอยู่ใน Phase 4 (4-Way Handshake) จึงอาจเห็น Event นี้ก่อนจะถูกตัดการเชื่อมต่อ
+
 3. หาก Router มีการตั้งค่า **MAC Address Filtering** (อนุญาตเฉพาะ MAC ที่ลงทะเบียน) ESP32 จะล้มเหลวในเฟสใด และจะส่ง Disconnect Reason Code ใดออกมา?
+
+   **คำตอบ:** มักล้มเหลวใน Phase 2 (Auth) หรือ Phase 3 (Assoc) เพราะ AP ปฏิเสธ MAC ที่ไม่ได้ลงทะเบียน และมักได้ `WIFI_REASON_AUTH_FAIL` (202) หรือ `WIFI_REASON_ASSOC_FAIL` (203) โดยขึ้นกับเฟิร์มแวร์ของ Router
+
 4. สรุปความแตกต่างสำคัญระหว่างจุดสิ้นสุดของ **Phase 3 (Link-Layer Connected)** กับจุดสิ้นสุดของ **Phase 5 (IP Address Assigned)**
+
+   **คำตอบ:** จุดสิ้นสุด Phase 3 คือมีลิงก์ Layer 2 กับ AP แต่ยังไม่มี IP จึงสื่อสารผ่าน IP ไม่ได้ ส่วนจุดสิ้นสุด Phase 5 คือได้ IP, Netmask และ Gateway แล้ว แอปพลิเคชันจึงเริ่มเปิด Socket และใช้ HTTP หรือ MQTT ได้
+

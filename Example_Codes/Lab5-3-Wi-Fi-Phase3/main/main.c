@@ -44,10 +44,10 @@ static const char *get_disconnect_reason_info(uint8_t reason) {
   case WIFI_REASON_NO_AP_FOUND:
     return "WIFI_REASON_NO_AP_FOUND (201) [Phase 1: SSID Not Found]";
   case WIFI_REASON_HANDSHAKE_TIMEOUT:
-    return "WIFI_REASON_HANDSHAKE_TIMEOUT (15) [Phase 4: 4-Way Handshake "
+    return "WIFI_REASON_HANDSHAKE_TIMEOUT (204) [Phase 4: 4-Way Handshake "
            "Timeout]";
   case WIFI_REASON_4WAY_HANDSHAKE_TIMEOUT:
-    return "WIFI_REASON_4WAY_HANDSHAKE_TIMEOUT (204) [Phase 4: Wrong Password]";
+    return "WIFI_REASON_4WAY_HANDSHAKE_TIMEOUT (15) [Phase 4: Wrong Password]";
   default:
     return "OTHER_DISCONNECT_REASON";
   }
