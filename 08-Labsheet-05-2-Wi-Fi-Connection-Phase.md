@@ -366,22 +366,26 @@ void app_main(void) {
 
 ### 6.1 ตารางสรุปเปรียบเทียบผลการทดลองทั้ง 3 สถานการณ์
 
+> **หมายเหตุ:** ค่าในตารางนี้เป็นผลที่คาดการณ์จากโค้ดและใบงาน ยังไม่ได้วัดจากบอร์ดจริง
+
 | ข้อการทดลอง | สถานการณ์ทดสอบ | Event สุดท้ายที่ได้รับ | ผลลัพธ์ (Passed/Failed) | Reason Code (Decimal / Hex) | คำอธิบาย Reason Code |
 | :---: | :--- | :---: | :---: | :---: | :--- |
-| **5.2.1** | SSID และ Password ถูกต้อง | | | | |
-| **5.2.2** | ระบุ SSID ผิด (ไม่มีในระบบ) | | | | |
-| **5.2.3** | ระบุ SSID ถูกต้อง แต่ Password ผิด | | | | |
+| **5.2.1** | SSID และ Password ถูกต้อง | `IP_EVENT_STA_GOT_IP` | Passed | ไม่มี | เชื่อมต่อและได้รับ IP สำเร็จ |
+| **5.2.2** | ระบุ SSID ผิด (ไม่มีในระบบ) | `WIFI_EVENT_STA_DISCONNECTED` | Failed | 201 / 0xC9 | `WIFI_REASON_NO_AP_FOUND` ไม่พบ AP |
+| **5.2.3** | ระบุ SSID ถูกต้อง แต่ Password ผิด | `WIFI_EVENT_STA_DISCONNECTED` | Failed | 15 / 0x0F หรือ 204 / 0xCC | Handshake Timeout |
 
 ### 6.2 บันทึกข้อมูลเครือข่ายจากการเชื่อมต่อสำเร็จ (ข้อ 5.2.1)
 
+> **หมายเหตุ:** ค่าในตารางนี้เป็นผลที่คาดการณ์จากโค้ดและใบงาน ยังไม่ได้วัดจากบอร์ดจริง
+
 | พารามิเตอร์เครือข่าย | ค่าที่ได้รับจริงจาก DHCP |
 | :--- | :--- |
-| **SSID** | |
-| **BSSID (MAC Address)** | |
-| **Channel** | |
-| **IP Address** | |
-| **Subnet Mask** | |
-| **Default Gateway** | |
+| **SSID** | ตามค่า `EXAMPLE_ESP_WIFI_SSID` |
+| **BSSID (MAC Address)** | อ่านจาก Log |
+| **Channel** | 1 - 13 ตาม AP |
+| **IP Address** | อยู่ในวงเครือข่ายของ AP (อ่านจาก Log) |
+| **Subnet Mask** | 255.255.255.0 |
+| **Default Gateway** | IP ของ AP/Router |
 
 ---
 

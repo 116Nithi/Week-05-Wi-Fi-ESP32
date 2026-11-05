@@ -28,7 +28,7 @@ static const char *get_disconnect_reason_info(uint8_t reason) {
     return "WIFI_REASON_AUTH_EXPIRE (2)";
   case WIFI_REASON_AUTH_FAIL:
     return "WIFI_REASON_AUTH_FAIL (1/202)";
-  case WIFI_REASON_ASSOC_EXPIRE:
+  case WIFI_REASON_DISASSOC_DUE_TO_INACTIVITY:
     return "WIFI_REASON_ASSOC_EXPIRE (4)";
   case WIFI_REASON_ASSOC_FAIL:
     return "WIFI_REASON_ASSOC_FAIL (3/203)";

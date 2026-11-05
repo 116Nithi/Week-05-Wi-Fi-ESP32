@@ -30,7 +30,7 @@ static const char *get_disconnect_reason_info(uint8_t reason) {
   case WIFI_REASON_AUTH_FAIL:
     return "WIFI_REASON_AUTH_FAIL (1/202) [Phase 2: Auth Rejected / MAC "
            "Filter]";
-  case WIFI_REASON_ASSOC_EXPIRE:
+  case WIFI_REASON_DISASSOC_DUE_TO_INACTIVITY:
     return "WIFI_REASON_ASSOC_EXPIRE (4) [Phase 3: Assoc Timeout / Packet "
            "Loss]";
   case WIFI_REASON_ASSOC_FAIL:
@@ -39,7 +39,7 @@ static const char *get_disconnect_reason_info(uint8_t reason) {
   case WIFI_REASON_ASSOC_TOOMANY:
     return "WIFI_REASON_ASSOC_TOOMANY (5/17) [Phase 3: AP Max Clients "
            "Exceeded]";
-  case WIFI_REASON_NOT_AUTHED:
+  case WIFI_REASON_CLASS2_FRAME_FROM_NONAUTH_STA:
     return "WIFI_REASON_NOT_AUTHED (6) [Phase 3: Assoc Sent Before Auth]";
   case WIFI_REASON_NO_AP_FOUND:
     return "WIFI_REASON_NO_AP_FOUND (201) [Phase 1: SSID Not Found]";

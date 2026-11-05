@@ -318,20 +318,24 @@ void app_main(void) {
 
 ### 6.1 ตารางสรุปเปรียบเทียบผลการทดลองในระดับ Link Layer
 
+> **หมายเหตุ:** ค่าในตารางนี้เป็นผลที่คาดการณ์จากโค้ดและใบงาน ยังไม่ได้วัดจากบอร์ดจริง
+
 | ข้อการทดลอง | สถานการณ์ทดสอบ | Event ที่ได้รับ | ผลการผูกสัมพันธ์ Link Layer | ค่า Association ID (AID) ที่ได้ | Reason Code (ถ้ามี) |
 | :---: | :--- | :---: | :---: | :---: | :--- |
-| **5.3.1** | ร้องขอ Auth & Assoc กับ AP มีอยู่จริง | | | | |
-| **5.3.2** | ร้องขอ Auth & Assoc กับ AP ไม่มีอยู่จริง | | | | |
+| **5.3.1** | ร้องขอ Auth & Assoc กับ AP มีอยู่จริง | `WIFI_EVENT_STA_CONNECTED` | สำเร็จ | 1 (เมื่อมีเครื่องเดียว) | ไม่มี |
+| **5.3.2** | ร้องขอ Auth & Assoc กับ AP ไม่มีอยู่จริง | `WIFI_EVENT_STA_DISCONNECTED` | ไม่สำเร็จ | ไม่มี | 201 |
 
 ### 6.2 บันทึกข้อมูล Link Layer จาก Event `WIFI_EVENT_STA_CONNECTED` (ข้อ 5.3.1)
 
+> **หมายเหตุ:** ค่าในตารางนี้เป็นผลที่คาดการณ์จากโค้ดและใบงาน ยังไม่ได้วัดจากบอร์ดจริง
+
 | พารามิเตอร์ Link Layer | ค่าที่อ่านได้จริงจาก Forensic Log |
 | :--- | :--- |
-| **SSID** | |
-| **BSSID (MAC Address)** | |
-| **Channel** | |
-| **Auth Mode Enum** | |
-| **Association ID (AID)** | |
+| **SSID** | ตามค่า `TARGET_WIFI_SSID` |
+| **BSSID (MAC Address)** | อ่านจาก Log |
+| **Channel** | 1 - 13 ตาม AP |
+| **Auth Mode Enum** | 3 (`WIFI_AUTH_WPA2_PSK`) |
+| **Association ID (AID)** | 1 (เมื่อมีเครื่องเดียว) |
 
 ---
 
