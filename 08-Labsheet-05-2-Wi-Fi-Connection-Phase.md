@@ -392,6 +392,18 @@ void app_main(void) {
 ## 7. คำถามท้ายการทดลอง (Post-Lab Questions)
 
 1. เหตุใดการระบุ SSID ผิด (ข้อ 5.2.2) จึงส่งผลให้เกิด Disconnect Event ด้วย Reason Code `201` (`WIFI_REASON_NO_AP_FOUND`) ตั้งแต่เฟส Scan?
+
+   **คำตอบ:** ESP32 สแกนหา AP ที่มี SSID ตรงกับค่าที่ตั้งก่อนเริ่มเชื่อมต่อ เมื่อไม่มี AP ใดตอบกลับ จึงไม่มีเป้าหมายให้ทำ Auth ต่อ Driver จึงรายงาน `WIFI_REASON_NO_AP_FOUND` (201) ตั้งแต่เฟส Scan
+
 2. เหตุใดการพิมพ์ Password ผิด (ข้อ 5.2.3) จึงผ่านเฟส Auth และ Assoc มาได้ แต่มาล้มเหลวในเฟส 4-Way Handshake (Reason Code `15` หรือ `204`)?
+
+   **คำตอบ:** WPA2-PSK ใช้ Open System Authentication ในเฟส Auth จึงยังไม่ตรวจรหัสผ่าน และเฟส Assoc เป็นการขอเข้าร่วมเครือข่ายเท่านั้น รหัสผ่านถูกตรวจจริงตอน 4-Way Handshake ผ่านค่า MIC เมื่อรหัสผิด MIC จึงไม่ตรงและ Handshake ล้มเหลว
+
 3. ลำดับการเกิด Event ระหว่าง **`WIFI_EVENT_STA_CONNECTED`** กับ **`IP_EVENT_STA_GOT_IP`** Event ใดเกิดขึ้นก่อนกัน และมีความหมายทางกายภาพของ Layer Network ต่างกันอย่างไร?
+
+   **คำตอบ:** `WIFI_EVENT_STA_CONNECTED` เกิดก่อน แสดงว่าเชื่อมต่อระดับ Link Layer (Layer 2) กับ AP แล้ว ส่วน `IP_EVENT_STA_GOT_IP` เกิดทีหลังเมื่อ DHCP แจก IP ให้ แสดงว่าพร้อมสื่อสารระดับ Network Layer (Layer 3)
+
 4. สมาชิกตัวแปร `reason` ในโครงสร้าง `wifi_event_sta_disconnected_t` มีประโยชน์อย่างไรต่อการออกแบบระบบค้นหาสาเหตุและกู้คืนการเชื่อมต่อ (Auto-Reconnection Mechanism) ในแอปพลิเคชัน IoT?
+
+   **คำตอบ:** ทำให้แยกสาเหตุการหลุดและตอบสนองได้ตรงจุด เช่น 201 ให้รอแล้วสแกนใหม่แบบ Backoff, 15 หรือ 204 มักหมายถึงรหัสผิดจึงควรหยุดลองซ้ำและแจ้งผู้ใช้ และ 200 (Beacon Timeout) ให้เชื่อมต่อใหม่ทันที ช่วยลดการลองซ้ำที่ไม่มีประโยชน์และประหยัดพลังงาน
+
