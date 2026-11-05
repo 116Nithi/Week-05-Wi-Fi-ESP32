@@ -17,8 +17,8 @@ static EventGroupHandle_t s_wifi_event_group;
 #define WIFI_CONNECTED_BIT BIT0
 #define WIFI_FAIL_BIT      BIT1
 
-#define TARGET_WIFI_SSID   "S24 Ultra Koson"
-#define TARGET_WIFI_PASS   "1234567890"
+#define TARGET_WIFI_SSID   "MY_SSID"
+#define TARGET_WIFI_PASS   "MY_PASSWORD"
 
 static const char *get_disconnect_reason_info(uint8_t reason) {
   switch (reason) {
@@ -33,9 +33,9 @@ static const char *get_disconnect_reason_info(uint8_t reason) {
   case WIFI_REASON_ASSOC_FAIL:
     return "WIFI_REASON_ASSOC_FAIL (3/203)";
   case WIFI_REASON_HANDSHAKE_TIMEOUT:
-    return "WIFI_REASON_HANDSHAKE_TIMEOUT (15) [Phase 4: MIC mismatch / EAPOL timeout]";
+    return "WIFI_REASON_HANDSHAKE_TIMEOUT (204) [Phase 4: MIC mismatch / EAPOL timeout]";
   case WIFI_REASON_4WAY_HANDSHAKE_TIMEOUT:
-    return "WIFI_REASON_4WAY_HANDSHAKE_TIMEOUT (204) [Phase 4: Wrong Password]";
+    return "WIFI_REASON_4WAY_HANDSHAKE_TIMEOUT (15) [Phase 4: Wrong Password]";
   case WIFI_REASON_NO_AP_FOUND:
     return "WIFI_REASON_NO_AP_FOUND (201) [Phase 1: SSID Not Found]";
   case WIFI_REASON_BEACON_TIMEOUT:
